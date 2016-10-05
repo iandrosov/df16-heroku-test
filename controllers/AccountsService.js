@@ -39,10 +39,22 @@ exports.accountsGET = function(args, res, next) {
 
 new Accounts().fetch().then((eq) => {
   
-    console.log('\n\nAccount Stringified:\n');
-    console.log(JSON.stringify(eq, null, 4));
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(eq, null, 4));
+    //console.log('\n\nAccount Stringified:\n');
+    //console.log(JSON.stringify(eq, null, 4));
+
+    var temp = '<html>';
+    eq.forEach(function(value){
+      //console.log(value);
+      console.log('Account Stringified:'+value.get('name')+'\n');
+      temp += 'Account:'+value.get('name')+'<br/>'
+    });
+    temp += '</html>';
+    
+    //res.setHeader('Content-Type', 'application/json');
+    //res.end(JSON.stringify(eq, null, 4));
+
+    res.setHeader('Content-Type', 'text/html');
+    res.end(temp, null, 4);
   
   }).catch(function(err) {
   
