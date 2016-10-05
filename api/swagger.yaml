@@ -1,0 +1,51 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "df16-heroku-hack"
+host: "127.0.0.1:8080"
+basePath: "/api"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /accounts:
+    get:
+      tags:
+      - "Accounts"
+      description: "Gets `Account` objects.\n"
+      operationId: "accountsGET"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            $ref: "#/definitions/Accounts"
+      x-swagger-router-controller: "Accounts"
+definitions:
+  Accounts:
+    type: "object"
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/Account"
+  Account:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      accountnnumber:
+        type: "integer"
+        format: "int32"
+      email:
+        type: "string"
+      sfid:
+        type: "string"
